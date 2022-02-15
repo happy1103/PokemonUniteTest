@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+	<link rel="stylesheet" href="css.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<html>
+	<body>
+
+	<h1 id = "title">Choose your pokemon</h1>
+		<div id = "formbox">
+		</div>
+	<h1 id = "titlee" style = "display: none;">It's your pokemon!!</h1>
+		<div id = "show" style = "display: none;">
+		</div>
+	</body>
+	<script>
+		var pokemon = ["妙蛙花", "皮卡丘", "阿羅拉九尾", "甲賀忍蛙", "閃焰王牌", "古月鳥", "沙奈朵", "仙子伊布", "狙射樹梟",
+		"呆殼獸", "卡比獸", "岩殿居蟹", "水箭龜", "象牙豬", "藏飽栗鼠", "朽木妖", 
+		"耿鬼", "阿勃梭魯", "烈箭鷹", "捷拉奧拉", 
+		"胖可丁", "魔牆人偶", "白蓬蓬", "幸福蛋", 
+		"噴火龍", "怪力", "烈咬陸鯊", "路卡利歐", "甜冷美后", "快龍", "堅盾劍怪"
+		];
+		var attack = [ "妙蛙花", "皮卡丘", "阿羅拉九尾", "甲賀忍蛙", "閃焰王牌", "古月鳥", "沙奈朵", "仙子伊布", "狙射樹梟" ];
+		var deffense = [ "呆殼獸", "卡比獸", "岩殿居蟹", "水箭龜", "象牙豬", "藏飽栗鼠", "朽木妖"];
+		var speed = [ "耿鬼", "阿勃梭魯", "烈箭鷹", "捷拉奧拉"];
+		var supporter = [ "胖可丁", "魔牆人偶", "白蓬蓬", "幸福蛋" ];
+		var allrounder = [ "噴火龍", "怪力", "烈咬陸鯊", "路卡利歐", "甜冷美后", "快龍", "堅盾劍怪" ];
+		
+		$(document).ready(function(){
+			for(var i=0;i<pokemon.length;i++)
+			{
+				var text = "<input type= 'checkbox' id=pokemon" + i + " value='" + pokemon[i] + "' checked='checked'> <label>" + pokemon[i] + "</label> &ensp; " ;
+				$("#formbox").append(text);
+				if( i==8 || i==15 || i==19 || i==23 || i==30 )
+					$("#formbox").append("<br><br>");
+			}
+			
+			$("#formbox").append("<button id = 'Gacha'>Gacha</button>");
+		});
+		
+		$(document).ready(function(){
+			$("#Gacha").on('click', function(){
+				$("#title").attr("style","display: none");
+				$("#formbox").attr("style","display: none");
+				$("#titlee").toggle();
+				$("#show").toggle();
+				while(1)
+				{
+					var lpokemon = pokemon.length;
+					var rpokemon = Math.floor( Math.random() * lpokemon );
+					var rpokemonname = "pokemon" + rpokemon;
+					console.log(rpokemonname);
+					var checkboxed = document.getElementById(rpokemonname);
+					//if(checkboxed.getAttribute('checked'))
+					if (checkboxed.checked == true)
+					{
+					  // it is checked
+					  console.log(pokemon[rpokemon]);
+					  break;
+					}
+				}
+				$("#show").append("<h3>" + pokemon[rpokemon] + "</h3>");
+			})
+		});
+		
+	</script>
+</html>
